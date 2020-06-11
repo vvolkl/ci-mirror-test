@@ -12,7 +12,8 @@ git fetch --shallow-since=01/01/2020
 shortbranch=$(git symbolic-ref --short HEAD)
 
 # need a token with api acces
-curl --silent   --header "PRIVATE-TOKEN: ${GITLAB_PASSWORD2}" -X https://${GITLAB_HOSTNAME}/api/v4/projects/${GITLAB_PROJECT_ID}/mirror/pull
+echo ${GITLAB_PASSWORD2}
+curl   --header "PRIVATE-TOKEN: ${GITLAB_PASSWORD2}" -X https://${GITLAB_HOSTNAME}/api/v4/projects/${GITLAB_PROJECT_ID}/mirror/pull
 
 sleep $POLL_TIMEOUT
 
