@@ -1,0 +1,7 @@
+variables:
+  GIT_STRATEGY: none
+
+build-all:
+  script:
+  - echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+  - echo "GITHUB_REF: $GITHUB_REF"
