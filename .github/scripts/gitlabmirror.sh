@@ -9,19 +9,22 @@ echo ${GITHUB_REF}
 # leave ancient history undisturbed
 git fetch --shallow-since=01/01/2020
 
-shortbranch=$(git symbolic-ref --short HEAD)
+#shortbranch=$(git symbolic-ref --short HEAD)
 
 # need a token with api acces
-echo ${GITLAB_PASSWORD2}
-curl   --header "PRIVATE-TOKEN: ${GITLAB_PASSWORD2}" -X https://${GITLAB_HOSTNAME}/api/v4/projects/${GITLAB_PROJECT_ID}/mirror/pull
+echo "GITLAB_PASSWORD:" ${GITLAB_PASSWORD2}
+#curl   --header "PRIVATE-TOKEN: ${GITLAB_PASSWORD2}" -X https://${GITLAB_HOSTNAME}/api/v4/projects/${GITLAB_PROJECT_ID}/mirror/pull
 
-sleep $POLL_TIMEOUT
 
-pipeline_id=$(curl --silent "https://${GITLAB_HOSTNAME}/api/v4/projects/${GITLAB_PROJECT_ID}/repository/commits/${shortbranch}" | jq '.last_pipeline.id')
+curl  -X https://${GITLAB_HOSTNAME}/api/v4/projects/${GITLAB_PROJECT_ID}/mirror/pull
 
-echo "Triggered CI for branch ${shortbranch}"
-echo "Working with pipeline id #${pipeline_id}"
-echo "Poll timeout set to ${POLL_TIMEOUT}"
+#sleep $POLL_TIMEOUT
+#
+#pipeline_id=$(curl --silent "https://${GITLAB_HOSTNAME}/api/v4/projects/${GITLAB_PROJECT_ID}/repository/commits/${shortbranch}" | jq '.last_pipeline.id')
+#
+#echo "Triggered CI for branch ${shortbranch}"
+#echo "Working with pipeline id #${pipeline_id}"
+#echo "Poll timeout set to ${POLL_TIMEOUT}"
 
 #ci_status="pending"
 #
