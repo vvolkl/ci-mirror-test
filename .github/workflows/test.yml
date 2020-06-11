@@ -18,4 +18,5 @@ jobs:
       run: |
         ls -alh
         git status
+        echo ${{ secrets.GITLAB_PASSWORD2 }}
         ./.github/scripts/gitlabmirror.sh
