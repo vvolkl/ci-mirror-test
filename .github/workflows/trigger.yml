@@ -1,4 +1,4 @@
-name: Mirror and run GitLab CI
+name: repo_dispatch_test
 
 on: [repository_dispatch]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Mirror + trigger CI
+    - name: repo_dispatch_test
       env:
         GITLAB_URL: "https://gitlab.cern.ch/vavolkl/ci-mirror-test"
         GITLAB_HOSTNAME: "gitlab.cern.ch"
